@@ -13,6 +13,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [\App\Http\Controllers\ArticleController::class, "index"] 
+)->name('dashboard');
+
+
+
+
+// Route::get('/', function () {
+//     return view('dashboard');
+// });
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+//->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::resource('articles',\App\Http\Controllers\ArticleController::class);
+
+Route::resource('joiners',\App\Http\Controllers\JoinerController::class)
+    ->except('index')
+    ->middleware(['auth', 'verified']);
+
+// 檢視專案時區
+// Route::get('/test-time', function () {
+//     return date('Y-m-d H:i:s');
+// });
+
+
+require __DIR__.'/auth.php';
