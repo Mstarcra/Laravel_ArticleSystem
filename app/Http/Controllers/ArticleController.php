@@ -83,7 +83,8 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        $article = auth() -> user() -> articles -> find($article);
+        return view('articles.edit', ['article' => $article]);
     }
 
     /**
@@ -95,7 +96,16 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $article = auth() -> user() -> articles -> find($article); 
+        $content = $request->validate([
+            'title' => 'required',
+            'content' => 'required|min:50',
+			'summary' => 'required|min:10',
+            'start_time' => 'required',
+            'end_time' => 'required',
+        ]);
+        $article -> update($content);
+        return redirect() -> route('dashboard');
     }
 
     /**

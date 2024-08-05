@@ -13,14 +13,7 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('content');
-            $table->text('summary');
-            $table->date('start_time');
-            $table->date('end_time');
             $table->timestamps();
-            $table->softDeletes();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
         });
     }
 
