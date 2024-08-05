@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 m-6 text-center">
                      @if($errors->any())
-						<div class = "error p-3 bg-red-150 text-white font-thin rounded">
+					 	<div class = "error p-3 bg-red-600 text-white font-thin rounded">
 							<ul>
 								@foreach($errors -> all() as $error)
 									<li>{{ $error }}</li>
@@ -19,6 +19,7 @@
 						</div>
 
 					@endif
+					
 
 					<form action = "{{ route('articles.store') }}" method = "post">  
 						@csrf
